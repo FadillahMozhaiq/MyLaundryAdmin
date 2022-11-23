@@ -23,6 +23,11 @@ val Typography = Typography(
         fontWeight = FontWeight.SemiBold,
         fontSize = 22.sp,
     ),
+    h6 = TextStyle(
+        fontFamily = fonts,
+        fontWeight = FontWeight.Bold,
+        fontSize = 24.sp,
+    ),
     /* Other default text styles to override
     labelSmall = TextStyle(
         fontFamily = FontFamily.Default,

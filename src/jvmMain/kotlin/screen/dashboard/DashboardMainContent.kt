@@ -15,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import screen.dashboard.content.DashboardContent
 import screen.dashboard.state.DashboardScreenState
 import theme.Black50
 import theme.Blue20
@@ -22,7 +23,7 @@ import theme.Grey50
 
 
 @Composable
-fun DashboardContent() {
+fun DashboardMainContent() {
     var dashboardScreenState by remember {
         mutableStateOf<DashboardScreenState>(DashboardScreenState.Dashboard)
     }
@@ -33,6 +34,10 @@ fun DashboardContent() {
                 dashboardScreenState = newState
             },
         )
+
+        when (dashboardScreenState) {
+            DashboardScreenState.Dashboard -> DashboardContent(Modifier.padding(24.dp))
+        }
     }
 }
 
@@ -42,6 +47,7 @@ fun DashboardSideBar(
     onItemClicked: (DashboardScreenState) -> Unit,
     modifier: Modifier = Modifier
         .width(375.dp)
+//        .fillMaxWidth(0.25f)
         .fillMaxHeight()
 ) {
     Column(

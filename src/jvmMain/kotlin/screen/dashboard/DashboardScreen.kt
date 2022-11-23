@@ -11,7 +11,7 @@ fun DashboardScreen() {
             ToolbarDashboard()
         },
         content = {
-            DashboardContent()
+            DashboardMainContent()
         }
     )
 }

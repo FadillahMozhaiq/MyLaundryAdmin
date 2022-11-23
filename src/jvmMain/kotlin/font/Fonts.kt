@@ -8,4 +8,5 @@ val fonts = FontFamily(
     Font("poppins_regular.ttf", FontWeight.Normal),
     Font("poppins_medium.ttf", FontWeight.Medium),
     Font("poppins_semi_bold.ttf", FontWeight.SemiBold),
+    Font("poppins_bold.ttf", FontWeight.Bold),
 )
