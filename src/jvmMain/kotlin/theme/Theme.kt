@@ -9,6 +9,7 @@ fun MyLaundryAdminTheme(
 ) {
 
     MaterialTheme(
+        colors = LightColors,
         typography = Typography,
         content = content
     )

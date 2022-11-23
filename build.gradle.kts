@@ -12,6 +12,7 @@ version = "1.0-SNAPSHOT"
 repositories {
     google()
     mavenCentral()
+    mavenLocal()
     maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
 }
 
@@ -28,6 +29,7 @@ kotlin {
                 implementation(compose.desktop.currentOs)
                 implementation("androidx.compose.material:material-icons-extended:1.3.1")
                 implementation("androidx.compose.material3:material3:1.0.0-alpha01")
+                implementation("androidx.navigation:navigation-compose:2.5.3")
             }
         }
         val jvmTest by getting

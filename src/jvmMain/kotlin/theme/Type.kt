@@ -13,6 +13,11 @@ val Typography = Typography(
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp,
     ),
+    body2 = TextStyle(
+        fontFamily = fonts,
+        fontWeight = FontWeight.Medium,
+        fontSize = 16.sp,
+    ),
     subtitle1 = TextStyle(
         fontFamily = fonts,
         fontWeight = FontWeight.SemiBold,

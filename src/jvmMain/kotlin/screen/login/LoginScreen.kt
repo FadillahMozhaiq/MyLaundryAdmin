@@ -1,13 +1,14 @@
+package screen.login
+
 import androidx.compose.desktop.ui.tooling.preview.Preview
-import androidx.compose.foundation.*
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Lock
-import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.outlined.Lock
-import androidx.compose.material.icons.outlined.Star
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -27,13 +28,14 @@ import component.Toolbar
 
 @Composable
 @Preview
-fun LoginScreen() {
+fun LoginScreen(onButtonLoginClicked: (email: String, password: String) -> Unit) {
     Scaffold(
         topBar = {
             Toolbar()
         },
         content = {
             LoginContent(
+                onButtonLoginClicked,
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(16.dp)
@@ -44,6 +46,7 @@ fun LoginScreen() {
 
 @Composable
 fun LoginContent(
+    onButtonLoginClicked: (email: String, password: String) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Row(
@@ -54,7 +57,10 @@ fun LoginContent(
         Spacer(modifier = Modifier.width(128.dp))
         LeftContent(Modifier.weight(0.5f))
         Spacer(modifier = Modifier.width(48.dp))
-        RightContent(Modifier.weight(0.5f))
+        RightContent(
+            onButtonLoginClicked,
+            Modifier.weight(0.5f)
+        )
         Spacer(modifier = Modifier.width(128.dp))
     }
 }
@@ -76,7 +82,7 @@ private fun LeftContent(
         Spacer(modifier = Modifier.height(8.dp))
         Text(
             text = "Ingin Jadi Pengusaha Laundry Terbaik? \nLaundry Etam Business solusinya",
-            color = Color.Blue,
+            color = MaterialTheme.colors.primary,
             style = MaterialTheme.typography.subtitle1,
         )
         Spacer(modifier = Modifier.height(8.dp))
@@ -97,18 +103,20 @@ private fun LeftContent(
 
 @Composable
 private fun RightContent(
+    onButtonLoginClicked: (email: String, password: String) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Card(
         elevation = 8.dp,
         modifier = modifier
     ) {
-        CardContent()
+        CardContent(onButtonLoginClicked)
     }
 }
 
 @Composable
 fun CardContent(
+    onButtonLoginClicked: (email: String, password: String) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -143,13 +151,15 @@ fun CardContent(
         RememberMeAndForgotPassword()
         Spacer(modifier = Modifier.height(16.dp))
         Button(
-            onClick = { /*TODO*/ },
+            onClick = {
+                onButtonLoginClicked(email, password)
+            },
             modifier = Modifier
                 .fillMaxWidth()
                 .height(48.dp),
             shape = MaterialTheme.shapes.medium,
             colors = ButtonDefaults.buttonColors(
-                backgroundColor = Color.Blue,
+                backgroundColor = MaterialTheme.colors.primary,
                 contentColor = Color.White
             )
         ) {
@@ -163,7 +173,7 @@ fun CardContent(
             text1 = "Belum punya akun? ",
             color1 = Color.Gray,
             text2 = "Buat akun disini!",
-            color2 = Color.Blue,
+            color2 = MaterialTheme.colors.primary,
         )
     }
 }
@@ -185,7 +195,7 @@ fun RememberMeAndForgotPassword() {
                     rememberMe = it
                 },
                 colors = CheckboxDefaults.colors(
-                    checkmarkColor = Color.Blue,
+                    checkmarkColor = MaterialTheme.colors.primary,
                     disabledColor = Color.DarkGray,
                     uncheckedColor = Color.Gray,
                 )
@@ -205,7 +215,7 @@ fun RememberMeAndForgotPassword() {
 
         Text(
             text = "Lupa Password?",
-            color = Color.Blue,
+            color = MaterialTheme.colors.primary,
             style = MaterialTheme.typography.body1,
             modifier = Modifier
                 .clickable(true) {
@@ -239,7 +249,7 @@ private fun InputEmail(
             )
         },
         colors = TextFieldDefaults.outlinedTextFieldColors(
-            focusedBorderColor = Color.Blue,
+            focusedBorderColor = MaterialTheme.colors.primary,
             unfocusedBorderColor = Color.Gray
         )
     )
@@ -289,7 +299,7 @@ private fun InputPassword(
             }
         },
         colors = TextFieldDefaults.outlinedTextFieldColors(
-            focusedBorderColor = Color.Blue,
+            focusedBorderColor = MaterialTheme.colors.primary,
             unfocusedBorderColor = Color.Gray
         )
     )
