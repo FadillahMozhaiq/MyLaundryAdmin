@@ -1,17 +1,17 @@
-package screen.dashboard
+package screen.home
 
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import component.ToolbarDashboard
 
 @Composable
-fun DashboardScreen() {
+fun HomeScreen() {
     Scaffold(
         topBar = {
             ToolbarDashboard()
         },
         content = {
-            DashboardMainContent()
+            MainHomeContent()
         }
     )
 }

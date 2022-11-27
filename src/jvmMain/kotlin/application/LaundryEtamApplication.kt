@@ -3,7 +3,7 @@ package application
 import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.runtime.*
 import screen.ScreenState
-import screen.dashboard.DashboardScreen
+import screen.home.HomeScreen
 import screen.login.LoginScreen
 import theme.MyLaundryAdminTheme
 
@@ -23,7 +23,7 @@ fun App() {
                 }
             }
             ScreenState.Dashboard -> {
-                DashboardScreen()
+                HomeScreen()
             }
         }
     }

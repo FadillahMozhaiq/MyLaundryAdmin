@@ -1,4 +1,4 @@
-package screen.dashboard
+package screen.home
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -15,36 +15,40 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import screen.dashboard.content.DashboardContent
-import screen.dashboard.state.DashboardScreenState
+import screen.home.content.dashboard.DashboardContent
+import screen.home.content.order.OrderContent
+import screen.home.content.product.ProductContent
+import screen.home.state.HomeScreenState
 import theme.Black50
 import theme.Blue20
 import theme.Grey50
 
 
 @Composable
-fun DashboardMainContent() {
-    var dashboardScreenState by remember {
-        mutableStateOf<DashboardScreenState>(DashboardScreenState.Dashboard)
+fun MainHomeContent() {
+    var homeScreenState by remember {
+        mutableStateOf<HomeScreenState>(HomeScreenState.Home)
     }
     Row {
-        DashboardSideBar(
-            dashboardScreenState,
+        HomeSideBar(
+            homeScreenState,
             onItemClicked = { newState ->
-                dashboardScreenState = newState
+                homeScreenState = newState
             },
         )
 
-        when (dashboardScreenState) {
-            DashboardScreenState.Dashboard -> DashboardContent(Modifier.padding(24.dp))
+        when (homeScreenState) {
+            HomeScreenState.Home -> DashboardContent(Modifier.padding(24.dp))
+            HomeScreenState.Product -> ProductContent(Modifier.padding(24.dp))
+            HomeScreenState.Order -> OrderContent(Modifier.padding(24.dp))
         }
     }
 }
 
 @Composable
-fun DashboardSideBar(
-    itemActive: DashboardScreenState,
-    onItemClicked: (DashboardScreenState) -> Unit,
+fun HomeSideBar(
+    itemActive: HomeScreenState,
+    onItemClicked: (HomeScreenState) -> Unit,
     modifier: Modifier = Modifier
         .width(375.dp)
 //        .fillMaxWidth(0.25f)
@@ -55,8 +59,8 @@ fun DashboardSideBar(
             .background(Color.White)
     ) {
         Spacer(Modifier.height(36.dp))
-        DashboardProfile()
-        DashboardMenu(
+        HomeProfile()
+        HomeMenu(
             itemActive,
             onItemClicked
         )
@@ -64,9 +68,9 @@ fun DashboardSideBar(
 }
 
 @Composable
-fun DashboardMenu(
-    itemActive: DashboardScreenState,
-    onItemClicked: (DashboardScreenState) -> Unit
+fun HomeMenu(
+    itemActive: HomeScreenState,
+    onItemClicked: (HomeScreenState) -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -74,39 +78,39 @@ fun DashboardMenu(
     ) {
         Spacer(Modifier.height(48.dp))
         Text(
-            text = "Dashboard",
+            text = "Home",
             style = MaterialTheme.typography.body2,
-            color = if (itemActive == DashboardScreenState.Dashboard) Blue20 else Black50,
+            color = if (itemActive == HomeScreenState.Home) Blue20 else Black50,
             modifier = Modifier
                 .clickable {
-                    onItemClicked(DashboardScreenState.Dashboard)
+                    onItemClicked(HomeScreenState.Home)
                 }
         )
         Spacer(Modifier.height(18.dp))
         Text(
             text = "Produk",
             style = MaterialTheme.typography.body2,
-            color = if (itemActive == DashboardScreenState.Product) Blue20 else Black50,
+            color = if (itemActive == HomeScreenState.Product) Blue20 else Black50,
             modifier = Modifier
                 .clickable {
-                    onItemClicked(DashboardScreenState.Product)
+                    onItemClicked(HomeScreenState.Product)
                 }
         )
         Spacer(Modifier.height(18.dp))
         Text(
             text = "Orderan",
             style = MaterialTheme.typography.body2,
-            color = if (itemActive == DashboardScreenState.Order) Blue20 else Black50,
+            color = if (itemActive == HomeScreenState.Order) Blue20 else Black50,
             modifier = Modifier
                 .clickable {
-                    onItemClicked(DashboardScreenState.Order)
+                    onItemClicked(HomeScreenState.Order)
                 }
         )
     }
 }
 
 @Composable
-fun DashboardProfile(
+fun HomeProfile(
     storeName: String = "Laundry Jaya Raya",
     storeDescription: String = "Jagonya Cuci!  Jasa Lundry untuk \nberbagai jenis pakaian, selimut, \nboneka, sepatu. 3 Jam selesai!! ",
 ) {

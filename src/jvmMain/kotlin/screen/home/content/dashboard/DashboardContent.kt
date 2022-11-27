@@ -1,4 +1,4 @@
-package screen.dashboard.content
+package screen.home.content.dashboard
 
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
