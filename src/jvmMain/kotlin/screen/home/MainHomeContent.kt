@@ -120,35 +120,47 @@ fun HomeProfile(
         shape = RoundedCornerShape(topEnd = 24.dp, bottomEnd = 24.dp),
         backgroundColor = MaterialTheme.colors.secondary,
     ) {
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
+        Row(
+            Modifier
+                .height(IntrinsicSize.Min)
         ) {
-            Image(
-                painter = painterResource("profile_icon.xml"),
-                contentDescription = "Logo",
+            Box(
                 modifier = Modifier
-                    .size(80.dp)
-                    .padding(16.dp)
+                    .width(30.dp)
+                    .fillMaxHeight()
+                    .background(MaterialTheme.colors.primaryVariant)
             )
-            Spacer(Modifier.height(8.dp))
-            Text(
-                storeName,
-                style = MaterialTheme.typography.subtitle1,
-                color = Color.Black
-            )
-            Spacer(Modifier.height(8.dp))
-            Text(
-                storeDescription,
-                style = MaterialTheme.typography.body2,
-                color = Grey50
-            )
-            Spacer(Modifier.height(16.dp))
-            Button(
-                onClick = { /*TODO*/ },
-                modifier = Modifier
-                    .padding(16.dp)
+            Spacer(Modifier.width(8.dp))
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
             ) {
-                Text("Edit Profile")
+                Image(
+                    painter = painterResource("profile_icon.xml"),
+                    contentDescription = "Logo",
+                    modifier = Modifier
+                        .size(80.dp)
+                        .padding(16.dp)
+                )
+                Spacer(Modifier.height(8.dp))
+                Text(
+                    storeName,
+                    style = MaterialTheme.typography.subtitle1,
+                    color = Color.Black
+                )
+                Spacer(Modifier.height(8.dp))
+                Text(
+                    storeDescription,
+                    style = MaterialTheme.typography.body2,
+                    color = Grey50
+                )
+                Spacer(Modifier.height(16.dp))
+                Button(
+                    onClick = { /*TODO*/ },
+                    modifier = Modifier
+                        .padding(16.dp)
+                ) {
+                    Text("Edit Profile")
+                }
             }
         }
     }
